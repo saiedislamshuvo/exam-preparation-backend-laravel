@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class MocktestController extends Controller
 {
+    public function public()
+    {
+        $mocktests = Mocktest::where('status', '=', true)->get();
+        return response()->json($mocktests);
+    }
+
     public function index(Request $request)
     {
         $mocktests = Mocktest::where('user_id', '=', $request->user()->id)->get();
