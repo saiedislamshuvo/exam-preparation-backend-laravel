@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Mocktest extends Model
+class Result extends Model
 {
     use HasFactory;
 
@@ -17,13 +16,9 @@ class Mocktest extends Model
      */
     protected $fillable = [
         'user_id',
-        'title',
-        'image',
-        'status'
+        'mocktest_id',
+        'total_questions',
+        'total_answered',
+        'correct_answered'
     ];
-
-    public function questions()
-    {
-        return $this->hasMany(Question::class, 'mocktest_id');
-    }
 }
