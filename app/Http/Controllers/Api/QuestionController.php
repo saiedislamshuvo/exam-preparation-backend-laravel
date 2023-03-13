@@ -24,11 +24,11 @@ class QuestionController extends Controller
                 $question->explanation = $value['explanation'] ?? '';
                 $question->save();
 
-                foreach ($value['options'] ?? [] as $option) {
+                foreach ($value['options'] ?? [] as $op) {
                     $option = new QuestionOption();
                     $option->question_id = $question->id;
-                    $option->option = $option['option'] ?? '';
-                    $option->correct = $option['correct'] ?? false;
+                    $option->option = $op['option'] ?? '';
+                    $option->correct = $op['correct'] ?? false;
                     $option->save();
                 }
             }
@@ -40,6 +40,11 @@ class QuestionController extends Controller
                 'message' => $ex->getMessage(),
             ], 400);
         }
+    }
+
+    public function show($id) {
+        $questions = Question::with('options')->where('mocktest_id', '=', $id)->get();
+        return response()->json($questions);
     }
 
     public function update(Request $request)

@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\MocktestController;
+use App\Http\Controllers\Api\QuestionController;
+use App\Http\Controllers\Api\ResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +32,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/change-password', [AuthController::class, 'changePassword']);
 
     Route::resource('/account/mocktests', MocktestController::class)->except(['create', 'show', 'edit']);
+    Route::resource('/account/questions', QuestionController::class)->except(['index', 'create', 'edit']);
+    Route::resource('/account/results', ResultController::class)->except(['create', 'edit', 'update']);
 });
