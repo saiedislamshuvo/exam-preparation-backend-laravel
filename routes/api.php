@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MocktestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +28,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/logout', [AuthController::class, 'logout']);
     Route::post('/change-password', [AuthController::class, 'changePassword']);
     
+    Route::resource('/mocktests', MocktestController::class)->except(['create', 'show', 'edit']);
 });
