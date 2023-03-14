@@ -42,7 +42,8 @@ class QuestionController extends Controller
         }
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $questions = Question::with('options')->where('mocktest_id', '=', $id)->get();
         return response()->json($questions);
     }
@@ -119,5 +120,11 @@ class QuestionController extends Controller
         } catch (\Exception $ex) {
             return response()->json(['success' => false]);
         }
+    }
+
+    public function destroy($id)
+    {
+        Question::find($id)->delete();
+        return response()->json(['success' => true]);
     }
 }
